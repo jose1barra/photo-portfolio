@@ -3,7 +3,7 @@ backend:
   repo: jose1barra/photo-portfolio
   branch: main
   auth_type: implicit
-  base_url: https://jose1barra.github.io
+  base_url: https://cosmic-dolphin-fff9ac.netlify.app
   site_domain: cosmic-dolphin-fff9ac.netlify.app
 
 media_folder: "uploads"
