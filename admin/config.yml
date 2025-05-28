@@ -2,13 +2,11 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "uploads"       # where your images go in the repo
-public_folder: "/uploads"     # how they’re referenced in src= paths
+media_folder: "uploads"       # Where your images get committed
+public_folder: "/uploads"     # How they’re referenced in <img src>
 
 media_library:
-  # you can sign up at https://uploadcare.com to get your own key,
-  # or use the demo key below for testing (not for production!)
-  name: uploadcare
+  name: uploadcare           # Built-in widget for image uploads
   config:
     publicKey: "demopublickey"
 
