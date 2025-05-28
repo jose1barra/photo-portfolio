@@ -1,4 +1,52 @@
-/* Hero Banner */
+/* Reset & Base */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #fafafa;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top:0; left:0; right:0;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #eee;
+  z-index: 1000;
+}
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+.logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.nav-links a {
+  font-weight: 400;
+  transition: color .2s;
+}
+.nav-links a:hover {
+  color: #555;
+}
+
+/* Hero Section */
 .hero-section {
   position: relative;
   height: 80vh;
@@ -9,84 +57,114 @@
 }
 .hero-overlay {
   background: rgba(0,0,0,0.4);
-  padding: 2rem;
+  padding: 2rem 3rem;
   text-align: center;
   color: #fff;
+  border-radius: 8px;
 }
 .hero-overlay h1 {
   font-size: 3rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
 }
 .hero-overlay p {
   font-size: 1.25rem;
 }
 
-/* Base */
-* { box-sizing: border-box; margin:0; padding:0; }
-body { font-family: 'Montserrat', sans-serif; background:#fafafa; color:#222; }
+/* Sections */
+.section {
+  padding: 6rem 0 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
 
 /* Gallery Grid */
-#gallery {
+.gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
   gap: 1.5rem;
-  padding: 2rem;
+  padding-top: 2rem;
 }
-
-/* Images */
 .gallery-item {
-  width:100%;
-  height:auto;
-  display:block;
-  object-fit:cover;
-  border-radius:8px;
-  filter:grayscale(100%);
-  opacity:0;
-  transform: translateY(20px);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  --i: 0;
   animation: fadeIn 0.8s forwards;
   animation-delay: calc(var(--i) * 0.1s);
-  cursor:pointer;
-  transition: filter .3s ease, transform .3s ease;
 }
-.gallery-item:hover {
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  transition: filter .3s, transform .3s, box-shadow .3s;
+  border-radius: 8px;
+}
+.gallery-item:hover img {
   filter: none;
-  transform: scale(1.03);
+  transform: scale(1.02);
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
+/* Caption Overlay */
+.gallery-item figcaption {
+  position: absolute;
+  bottom: 0; left:0; right:0;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: .5rem;
+  transform: translateY(100%);
+  transition: transform .3s ease;
+  font-weight: 300;
+  text-align: center;
+}
+.gallery-item:hover figcaption {
+  transform: translateY(0);
+}
 
-/* staggered fadeIn */
+/* Fade-in Keyframes */
 @keyframes fadeIn {
   to { opacity:1; transform: none; }
 }
 
 /* Lightbox */
 .lightbox {
-  position: fixed; inset:0;
+  position: fixed;
+  inset: 0;
   background: rgba(0,0,0,0.85);
   display: none;
   align-items: center;
   justify-content: center;
-  z-index:2000;
-  padding:2rem;
+  padding: 2rem;
+  z-index: 2000;
 }
-.lightbox.show { display: flex; }
+.lightbox.show {
+  display: flex;
+}
 .lightbox-content {
-  max-width:90%;
-  max-height:90%;
-  border-radius:4px;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 4px;
   animation: zoomIn .3s ease-out;
 }
 @keyframes zoomIn {
-  from { transform: scale(0.7); opacity:0; }
-  to { transform: scale(1); opacity:1; }
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 .close {
   position: absolute;
-  top:1.5rem; right:1.5rem;
-  font-size:2rem; color:#fff;
-  cursor:pointer;
-  background:rgba(0,0,0,0.5); padding:0.2rem 0.5rem; border-radius:4px;
+  top: 1.5rem; right: 1.5rem;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  background: rgba(0,0,0,0.5);
+  padding: .2rem .5rem;
+  border-radius: 4px;
 }
 
-/* About & Contact spacing (optional) */
-.about-section, .contact-section { padding:4rem 2rem; text-align:center; }
+/* Scroll-in Observer helper (no extra CSS needed) */
