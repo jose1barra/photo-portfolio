@@ -6,7 +6,7 @@ media_folder: "uploads"       # Where your images get committed
 public_folder: "/uploads"     # How they’re referenced in <img src>
 
 media_library:
-  name: uploadcare           # Built-in widget for image uploads
+  name: uploadcare            # Built-in widget for image uploads
   config:
     publicKey: "demopublickey"
 
