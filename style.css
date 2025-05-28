@@ -1,3 +1,26 @@
+/* Hero Banner */
+.hero-section {
+  position: relative;
+  height: 80vh;
+  background: url('uploads/hero.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-overlay {
+  background: rgba(0,0,0,0.4);
+  padding: 2rem;
+  text-align: center;
+  color: #fff;
+}
+.hero-overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+.hero-overlay p {
+  font-size: 1.25rem;
+}
+
 /* Base */
 * { box-sizing: border-box; margin:0; padding:0; }
 body { font-family: 'Montserrat', sans-serif; background:#fafafa; color:#222; }
