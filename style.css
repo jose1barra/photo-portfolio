@@ -1,170 +1,74 @@
 /* Reset & Base */
 * { margin:0; padding:0; box-sizing:border-box; }
-body {
-  font-family: 'Montserrat', sans-serif;
-  background: #fafafa;
-  color: #222;
-  line-height: 1.6;
-}
+body { font-family: sans-serif; background:#fff; color:#000; }
 
 /* Container */
 .container {
   width: 90%;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* Navbar */
-.navbar {
-  position: fixed;
-  top:0; left:0; right:0;
-  background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(10px);
+/* Header */
+.header {
+  padding: 2rem 0;
   border-bottom: 1px solid #eee;
-  z-index: 1000;
-}
-.navbar .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
 }
 .logo {
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
-.nav-links a {
-  font-weight: 400;
+.nav a {
+  margin-left: 2rem;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
   transition: color .2s;
 }
-.nav-links a:hover {
+.nav a:hover {
   color: #555;
 }
 
-/* Hero Section */
-.hero-section {
-  position: relative;
-  height: 80vh;
-  background: url('uploads/hero.jpg') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hero-overlay {
-  background: rgba(0,0,0,0.4);
-  padding: 2rem 3rem;
-  text-align: center;
-  color: #fff;
-  border-radius: 8px;
-}
-.hero-overlay h1 {
-  font-size: 3rem;
-  margin-bottom: .5rem;
-}
-.hero-overlay p {
-  font-size: 1.25rem;
-}
-
-/* Sections */
-.section {
-  padding: 6rem 0 3rem;
-  opacity: 0;
-  transform: translateY(20px);
-}
-.section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  text-align: center;
-}
-
 /* Gallery Grid */
-.gallery-grid {
+.gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 1.5rem;
-  padding-top: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+  gap: 10px;
+  padding: 1rem;
 }
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  --i: 0;
-  animation: fadeIn 0.8s forwards;
-  animation-delay: calc(var(--i) * 0.1s);
-}
-.gallery-item img {
-  display: block;
+.gallery img {
   width: 100%;
-  height: auto;
-  filter: grayscale(100%);
-  transition: filter .3s, transform .3s, box-shadow .3s;
-  border-radius: 8px;
+  display: block;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
 }
-.gallery-item:hover img {
-  filter: none;
+.gallery img:hover {
   transform: scale(1.02);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-/* Caption Overlay */
-.gallery-item figcaption {
-  position: absolute;
-  bottom: 0; left:0; right:0;
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  padding: .5rem;
-  transform: translateY(100%);
-  transition: transform .3s ease;
-  font-weight: 300;
-  text-align: center;
-}
-.gallery-item:hover figcaption {
-  transform: translateY(0);
-}
-
-/* Fade-in Keyframes */
-@keyframes fadeIn {
-  to { opacity:1; transform: none; }
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 /* Lightbox */
-.lightbox {
+#lightbox {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.9);
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  z-index: 2000;
+  z-index: 1000;
 }
-.lightbox.show {
-  display: flex;
-}
-.lightbox-content {
+#lightbox-img {
   max-width: 90%;
   max-height: 90%;
-  border-radius: 4px;
-  animation: zoomIn .3s ease-out;
-}
-@keyframes zoomIn {
-  from { transform: scale(0.7); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
 }
 .close {
   position: absolute;
-  top: 1.5rem; right: 1.5rem;
+  top:20px; right:20px;
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
-  background: rgba(0,0,0,0.5);
-  padding: .2rem .5rem;
-  border-radius: 4px;
 }
-
-/* Scroll-in Observer helper (no extra CSS needed) */
