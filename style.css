@@ -40,6 +40,20 @@ body { font-family: sans-serif; background:#fff; color:#000; }
   box-shadow:0 8px 16px rgba(0,0,0,0.1);
 }
 
+/* Sections (About & Contact) */
+.section {
+  padding:4rem 0;
+}
+.about-section, .contact-section {
+  text-align: center;
+}
+.section h2 {
+  font-size:2rem; margin-bottom:1rem;
+}
+.section p {
+  max-width:700px; margin:0 auto; line-height:1.6;
+}
+
 /* Lightbox backdrop */
 .lightbox {
   position:fixed; inset:0;
@@ -77,8 +91,7 @@ body { font-family: sans-serif; background:#fff; color:#000; }
 
 /* LIGHTBOX SIZE OVERRIDE */
 .lightbox img,
-#lightbox-img,
-.lightbox-content {
+#lightbox-img {
   max-width:70vw !important;
   max-height:80vh !important;
   width:auto !important;
