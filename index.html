@@ -23,19 +23,22 @@
     <img class="lightbox-content" id="lightbox-img" />
   </div>
 
-  <!-- Netlify Identity Widget -->
+  <!-- Netlify Identity -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
+      window.netlifyIdentity.on("init", (user) => {
+        // If invite token exists in URL, open signup/login
+        const hash = window.location.hash;
+        if (!user && hash.includes("invite_token")) {
+          window.netlifyIdentity.open();
         }
+
+        window.netlifyIdentity.on("login", () => {
+          window.location.href = "/admin/";
+        });
       });
       window.netlifyIdentity.init();
-      window.netlifyIdentity.open(); // ✅ This forces the login/signup popup
     }
   </script>
 
