@@ -8,7 +8,7 @@
   <script defer src="lightbox.js"></script>
 </head>
 <body>
-  <!-- Header -->
+  <!-- Header with simple nav -->
   <header class="header">
     <div class="container">
       <h1 class="logo">My Photography</h1>
@@ -21,9 +21,9 @@
     </div>
   </header>
 
-  <!-- Gallery -->
+  <!-- Gallery Grid -->
   <main id="gallery" class="gallery">
-    <!-- Copy & paste your images here -->
+    <!-- Replace these with your actual filenames -->
     <img src="uploads/photo1.jpg" alt="">
     <img src="uploads/photo2.jpg" alt="">
     <img src="uploads/photo3.jpg" alt="">
@@ -31,10 +31,12 @@
     <!-- …etc… -->
   </main>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox">
-    <span class="close">&times;</span>
+  <!-- Lightbox Slider -->
+  <div id="lightbox" class="lightbox">
+    <button class="nav prev">&#10094;</button>
     <img id="lightbox-img" src="" alt="">
+    <button class="nav next">&#10095;</button>
+    <span class="close">&times;</span>
   </div>
 </body>
 </html>
