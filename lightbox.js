@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     currentIndex = index;
     imgEl.style.opacity = 0;
     imgEl.src = galleryImgs[currentIndex].src;
-    imgEl.onload = () => imgEl.style.opacity = 1;
+    imgEl.onload = () => { imgEl.style.opacity = 1; };
     lightbox.classList.add('show');
   }
 
