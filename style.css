@@ -1,8 +1,16 @@
 /* Reset & Base */
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: sans-serif; background:#fff; color:#000; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  background: #fff;
+  color: #000;
+}
 
-/* Container for header */
+/* Container used in header */
 .container {
   width: 90%;
   max-width: 1200px;
@@ -12,9 +20,9 @@ body { font-family: sans-serif; background:#fff; color:#000; }
   justify-content: space-between;
 }
 
-/* Header & Nav */
+/* Header & Nav (tightened) */
 .header {
-  padding: 2rem 0;
+  padding: 0.5rem 0;               /* less vertical padding */
   border-bottom: 1px solid #eee;
   position: sticky;
   top: 0;
@@ -23,40 +31,43 @@ body { font-family: sans-serif; background:#fff; color:#000; }
   z-index: 1000;
 }
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.3rem;              /* slightly smaller */
   font-weight: bold;
 }
 .nav a {
-  margin-left: 2rem;
+  margin-left: 1rem;              /* less gap between links */
   text-decoration: none;
   color: inherit;
   font-weight: 500;
-  transition: color .2s;
+  font-size: 0.9rem;              /* slightly smaller text */
+  transition: color 0.2s;
 }
 .nav a:hover {
   color: #555;
 }
 
-/* Gallery Grid */
+/* Gallery Grid (more “crammed”) */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
-  gap: 10px;
-  padding: 1rem;
+  /* smaller min width and smaller gap for tighter packing */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 4px;
+  padding: 4px;
 }
 .gallery img {
   width: 100%;
   display: block;
   object-fit: cover;
   cursor: pointer;
-  transition: transform .3s, box-shadow .3s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 4px;
 }
 .gallery img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Lightbox */
+/* Lightbox (unchanged) */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -75,32 +86,33 @@ body { font-family: sans-serif; background:#fff; color:#000; }
   opacity: 0;
   animation: fadeIn 0.5s forwards;
 }
-/* Fade-in keyframe */
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-
-/* Close button */
 .close {
   position: absolute;
-  top: 20px; right: 20px;
-  font-size: 2rem; color: #fff;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  color: #fff;
   cursor: pointer;
 }
-
-/* Prev/Next nav buttons */
 .nav {
   position: absolute;
-  top: 50%; transform: translateY(-50%);
+  top: 50%;
+  transform: translateY(-50%);
   background: rgba(0,0,0,0.5);
-  border: none; color: #fff;
-  font-size: 2rem; padding: .5rem;
-  cursor: pointer; user-select: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  user-select: none;
   z-index: 2001;
 }
-.prev { left: 20px; }
-.next { right: 20px; }
+.prev { left: 10px; }
+.next { right: 10px; }
 .nav:hover {
   background: rgba(0,0,0,0.7);
 }
