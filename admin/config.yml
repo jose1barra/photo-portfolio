@@ -2,6 +2,9 @@ backend:
   name: github
   repo: jose1barra/photo-portfolio
   branch: main
+  auth_type: implicit
+  base_url: https://jose1barra.github.io
+  site_domain: cosmic-dolphin-fff9ac.netlify.app
 
 media_folder: "uploads"
 public_folder: "/uploads"
@@ -15,4 +18,3 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
-
