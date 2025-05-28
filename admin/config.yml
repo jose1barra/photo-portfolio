@@ -1,16 +1,38 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: jose1barra/photo-portfolio
   branch: main
+  auth_type: implicit
+  base_url: https://cosmic-dolphin-fff9ac.netlify.app
+  site_domain: cosmic-dolphin-fff9ac.netlify.app
 
 media_folder: "uploads"
 public_folder: "/uploads"
 
+publish_mode: editorial_workflow  # optional: gives you drafts & reviews
+
 collections:
   - name: "photos"
-    label: "Photos"
+    label: "Gallery"
     folder: "uploads"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Filename", name: "path", widget: "hidden", default: "{{media_folder}}/{{media_filename}}" }
       - { label: "Image", name: "image", widget: "image" }
+      - { label: "Title", name: "title", widget: "string" }
+  - name: "pages"
+    label: "Site Pages"
+    editor:
+      preview: false
+    files:
+      - file: "about.html"
+        label: "About Page"
+        name: "about"
+        fields:
+          - { label: "Raw HTML", name: "body", widget: "markdown" }
+      - file: "contact.html"
+        label: "Contact Page"
+        name: "contact"
+        fields:
+          - { label: "Raw HTML", name: "body", widget: "markdown" }
