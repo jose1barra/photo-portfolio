@@ -1,34 +1,56 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const gallery = document.getElementById('gallery')
-  const lightbox = document.getElementById('lightbox')
-  const lightboxImg = document.getElementById('lightbox-img')
-  const closeBtn = document.querySelector('.close')
+  // Elements
+  const gallery = document.getElementById('gallery');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = document.querySelector('.close');
 
-  // If you’re dynamically injecting via imageList, do that here...
+  // 1. Your images + titles
   const imageList = [
-    'uploads/photo1.jpg',
-    'uploads/photo2.jpg',
+    { src: 'uploads/photo1.jpg', title: 'Sunset Over Mountains' },
+    { src: 'uploads/photo2.jpg', title: 'City Skyline' },
     // …add more…
-  ]
-  imageList.forEach(src => {
-    const img = document.createElement('img')
-    img.src = src
-    img.alt = 'Photo'
-    img.classList.add('gallery-item')
-    gallery.appendChild(img)
-  })
+  ];
 
-  // Attach click handler to **all** gallery items (static or dynamic)
-  document.querySelectorAll('.gallery-item').forEach(img => {
-    img.addEventListener('click', () => {
-      lightboxImg.src = img.src
-      lightbox.classList.add('show')
-    })
-  })
+  // 2. Inject gallery items
+  imageList.forEach((imgData, i) => {
+    const fig = document.createElement('figure');
+    fig.classList.add('gallery-item');
+    fig.style.setProperty('--i', i);
 
-  // Close logic
-  closeBtn.addEventListener('click', () => lightbox.classList.remove('show'))
+    const img = document.createElement('img');
+    img.src = imgData.src;
+    img.alt = imgData.title;
+
+    const cap = document.createElement('figcaption');
+    cap.textContent = imgData.title;
+
+    fig.append(img, cap);
+    gallery.appendChild(fig);
+
+    fig.addEventListener('click', () => {
+      lightboxImg.src = imgData.src;
+      lightbox.classList.add('show');
+    });
+  });
+
+  // 3. Close handlers
+  closeBtn.addEventListener('click', () => lightbox.classList.remove('show'));
   lightbox.addEventListener('click', e => {
-    if (e.target === lightbox) lightbox.classList.remove('show')
-  })
-})
+    if (e.target === lightbox) lightbox.classList.remove('show');
+  });
+
+  // 4. Section scroll-in animations
+  const sections = document.querySelectorAll('.section, .hero-section');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.transition = 'opacity .6s ease, transform .6s ease';
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'none';
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  sections.forEach(sec => obs.observe(sec));
+});
