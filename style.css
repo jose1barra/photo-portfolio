@@ -73,10 +73,13 @@ body { font-family: sans-serif; background:#fff; color:#000; }
 
 /* Lightbox image + fade */
 .lightbox-img {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 70%;     /* shrink from 90% to 70% of viewport width */
+  max-height: 80%;    /* shrink from 90% to 80% of viewport height */
   opacity: 0;
   transition: opacity .4s ease;
+  object-fit: contain; /* ensures the entire image is visible */
+}
+
 }
 
 /* Prev/Next buttons */
