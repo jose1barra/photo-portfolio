@@ -23,9 +23,24 @@
     <img class="lightbox-content" id="lightbox-img" />
   </div>
 
-  <script src="lightbox.js"></script>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  // Initialize Netlify Identity
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        // Automatically open modal if invite token is in the URL
+        const token = new URLSearchParams(window.location.hash.slice(1)).get("invite_token");
+        if (token) {
+          window.netlifyIdentity.open("signup");
+        }
+      }
+    });
+    window.netlifyIdentity.init();
+  }
+</script>
 <script src="lightbox.js"></script>
+
 
 </body>
 </html>
