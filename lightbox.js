@@ -1,36 +1,44 @@
+// Wait for everything to load
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. The list of images to show in the gallery
+  const imageList = [
+    'uploads/photo1.jpg',
+    'uploads/photo2.jpg',
+    // add more filenames here...
+  ];
 
-const imageList = [
-  "uploads/photo1.jpg",
-  "uploads/photo2.jpg"
-];
+  // 2. Grab the gallery container
+  const gallery = document.getElementById('gallery');
 
-const gallery = document.getElementById("gallery");
-imageList.forEach((src) => {
-  const img = document.createElement("img");
-  img.src = src;
-  img.alt = "Photo";
-  img.classList.add("gallery-img");
-  gallery.appendChild(img);
-});
+  // 3. For each image path, create an <img> and append it
+  imageList.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = 'Photo';
+    img.classList.add('gallery-item');     // matches style.css
+    gallery.appendChild(img);
 
-// Lightbox functionality
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-const close = document.getElementsByClassName("close")[0];
+    // 4. When clicked, open lightbox
+    img.addEventListener('click', () => {
+      lightboxImg.src = src;
+      lightbox.style.display = 'flex';     // use flex for centering
+    });
+  });
 
-document.querySelectorAll(".gallery-img").forEach(img => {
-  img.addEventListener("click", () => {
-    lightbox.style.display = "block";
-    lightboxImg.src = img.src;
+  // 5. Grab lightbox elements
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = document.querySelector('.close');
+
+  // 6. Close button click
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+
+  // 7. Click outside the image
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) {
+      lightbox.style.display = 'none';
+    }
   });
 });
-
-close.onclick = () => {
-  lightbox.style.display = "none";
-};
-
-window.onclick = (event) => {
-  if (event.target == lightbox) {
-    lightbox.style.display = "none";
-  }
-};
