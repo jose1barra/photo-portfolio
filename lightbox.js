@@ -1,44 +1,34 @@
-// Wait for everything to load
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. The list of images to show in the gallery
+  const gallery = document.getElementById('gallery')
+  const lightbox = document.getElementById('lightbox')
+  const lightboxImg = document.getElementById('lightbox-img')
+  const closeBtn = document.querySelector('.close')
+
+  // If you’re dynamically injecting via imageList, do that here...
   const imageList = [
     'uploads/photo1.jpg',
     'uploads/photo2.jpg',
-    // add more filenames here...
-  ];
-
-  // 2. Grab the gallery container
-  const gallery = document.getElementById('gallery');
-
-  // 3. For each image path, create an <img> and append it
+    // …add more…
+  ]
   imageList.forEach(src => {
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = 'Photo';
-    img.classList.add('gallery-item');     // matches style.css
-    gallery.appendChild(img);
+    const img = document.createElement('img')
+    img.src = src
+    img.alt = 'Photo'
+    img.classList.add('gallery-item')
+    gallery.appendChild(img)
+  })
 
-    // 4. When clicked, open lightbox
+  // Attach click handler to **all** gallery items (static or dynamic)
+  document.querySelectorAll('.gallery-item').forEach(img => {
     img.addEventListener('click', () => {
-      lightboxImg.src = src;
-      lightbox.style.display = 'flex';     // use flex for centering
-    });
-  });
+      lightboxImg.src = img.src
+      lightbox.classList.add('show')
+    })
+  })
 
-  // 5. Grab lightbox elements
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const closeBtn = document.querySelector('.close');
-
-  // 6. Close button click
-  closeBtn.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-  });
-
-  // 7. Click outside the image
+  // Close logic
+  closeBtn.addEventListener('click', () => lightbox.classList.remove('show'))
   lightbox.addEventListener('click', e => {
-    if (e.target === lightbox) {
-      lightbox.style.display = 'none';
-    }
-  });
-});
+    if (e.target === lightbox) lightbox.classList.remove('show')
+  })
+})
