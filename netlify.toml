@@ -2,9 +2,15 @@
   publish = "."
   command = ""
 
+#  Serve your real config.yml (so CMS can read it)
 [[redirects]]
-  # Catch /admin and anything under it
-  from = "/admin/*"
-  to   = "/admin/index.html"
+  from = "/admin/config.yml"
+  to   = "/admin/config.yml"
   status = 200
-  force = true
+
+#  Then catch all other /admin/* routes and send to the CMS entrypoint
+[[redirects]]
+  from   = "/admin/*"
+  to     = "/admin/index.html"
+  status = 200
+  force  = true
