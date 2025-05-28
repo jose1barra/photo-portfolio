@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: jose1barra/photo-portfolio
   branch: main
 
 media_folder: "uploads"
@@ -14,3 +15,4 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
+
