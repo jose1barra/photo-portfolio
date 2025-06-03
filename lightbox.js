@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function openLightbox(index) {
     currentIndex = index;
     imgEl.style.opacity = 0;
+    if (imgEl.src === galleryImgs[currentIndex].src) {
+      imgEl.removeAttribute('src');
+    }
     imgEl.src = galleryImgs[currentIndex].src;
     imgEl.onload = () => { imgEl.style.opacity = 1; };
     lightbox.classList.add('show');
